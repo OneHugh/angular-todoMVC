@@ -23,14 +23,16 @@
 				<label for="toggle-all">Mark all as complete</label>
 				<ul class="todo-list">
 					<!-- 这些都是为了显示列表项的结构 -->
-					<!-- 列表项应该在编辑完成时得到类编辑，并在完成标记时完成 -->
-					<li ng-repeat="item in todos" >
+					<!-- editing -->
+					<li ng-repeat="item in todos" ng-class="{editing:isEditingId==item.id}">
 						<div class="view">
 							<input class="toggle" type="checkbox" checked>
-							<label>{{item.name}}</label>
+							<label ng-dblclick="edit(item.id)" >{{item.name}}</label>
 							<button ng-click="remove(item.id)" class="destroy"></button>
 						</div>
-						<input class="edit" value="Create a TodoMVC template">
+						<form ng-submit="save()">
+							<input class="edit" ng-model="item.name" value="">
+						</form>
 					</li>
 					
 				</ul>

@@ -7,7 +7,7 @@
 		// 1.初始显示界面
 		//假设已经得到数据
 		$scope.todos = [
-			{id:1,name:'吃饭',completed:false},
+			
 			{id:1,name:'吃饭',completed:true},
 			{id:2,name:'睡觉',completed:false},
 			{id:3,name:'打豆豆',completed:true},
@@ -41,6 +41,15 @@
 		}
 
 		// 4.双击 修改任务
+		var isEditingId = -1;
+		$scope.edit = function(id){
+			$scope.isEditingId = id;
+		}
+
+		$scope.save = function(){
+			$scope.isEditingId = -1;
+		}
+
 
 		// 5.勾选 切换任务完成与否的状态,已完成的加中划线
 
