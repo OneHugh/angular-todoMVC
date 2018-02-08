@@ -19,14 +19,14 @@
 			</header>
 			<!-- 这个部分应该默认隐藏，并在有todos时显示 -->
 			<section class="main">
-				<input id="toggle-all" class="toggle-all" type="checkbox">
+				<input id="toggle-all" class="toggle-all" type="checkbox" ng-model="selectAll" ng-click="toggleAll()">
 				<label for="toggle-all">Mark all as complete</label>
 				<ul class="todo-list">
 					<!-- 这些都是为了显示列表项的结构 -->
 					<!-- editing -->
-					<li ng-repeat="item in todos" ng-class="{editing:isEditingId==item.id}">
+					<li ng-repeat="item in todos" ng-class="{editing:isEditingId==item.id,completed:item.completed}">
 						<div class="view">
-							<input class="toggle" type="checkbox" checked>
+							<input ng-model="item.completed" class="toggle" type="checkbox" checked>
 							<label ng-dblclick="edit(item.id)" >{{item.name}}</label>
 							<button ng-click="remove(item.id)" class="destroy"></button>
 						</div>

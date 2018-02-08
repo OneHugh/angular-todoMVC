@@ -52,8 +52,17 @@
 
 
 		// 5.勾选 切换任务完成与否的状态,已完成的加中划线
+			//让他的li标签class等于item.completed就行,input中有checkbox复选框时ng-model true ,false表示选中和未选中
 
 		// 6.点击 all批量切换任务状态
+		$scope.selectAll = false;
+		$scope.toggleAll = function(){
+			for (var i = 0; i < $scope.todos.length; i++) {
+				var item = $scope.todos[i];
+				item.completed = $scope.selectAll; 
+			}
+			//$scope.selectAll=true;
+		}
 
 		// 7.左下角未完成的任务数同步
 
