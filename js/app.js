@@ -3,7 +3,7 @@
 
 	// 从这里开始,享受这个旅程!
 	var app = angular.module('todoApp',[])
-	app.controller('todoController',['$scope',function($scope){
+	app.controller('todoController',['$scope','$filter',function($scope){
 		// 1.初始显示界面
 		//假设已经得到数据
 		$scope.todos = [
@@ -65,10 +65,36 @@
 		}
 
 		// 7.左下角未完成的任务数同步
+		$scope.getActive = function() {
+			var num = 0;
+			for (let i = 0; i < $scope.todos.length; i++) {
+				const element = $scope.todos[i];
+				if (!element.completed) {
+					num++;
+				}
+			}
+			return num
+		}
 
 		// 8.右下角 点击 清除所有以完成任务,没有已完成任务不显示clear completed
-
+		$scope.clearAll = function () {
+			for (let i = $scope.todos.length - 1; i >= 0; i--) {
+				const element = $scope.todos[i];
+				if (element.completed) {
+					$scope.todos.splice(i,1);
+				}
+			}
+		}
 		// 9.点击  下中 all  显示所有;active 显示未完成任务 ;completed 显示已完成任务
+		$scope.all = function() {
+			$scope.state = {};
+		}
+		$scope.active = function() {
+			$scope.state = {completed:false};
+		}
+		$scope.completed = function() {
+			$scope.state = {completed:true};
+		}
 	}])
 
 })(angular);

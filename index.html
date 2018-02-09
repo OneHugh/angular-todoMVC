@@ -24,7 +24,7 @@
 				<ul class="todo-list">
 					<!-- 这些都是为了显示列表项的结构 -->
 					<!-- editing -->
-					<li ng-repeat="item in todos" ng-class="{editing:isEditingId==item.id,completed:item.completed}">
+					<li ng-repeat="item in todos | filter : state" ng-class="{editing:isEditingId==item.id,completed:item.completed}">
 						<div class="view">
 							<input ng-model="item.completed" class="toggle" type="checkbox" checked>
 							<label ng-dblclick="edit(item.id)" >{{item.name}}</label>
@@ -40,21 +40,21 @@
 			<!-- 这个页脚应该在默认情况下隐藏，并在有todos时显示 -->
 			<footer class="footer">
 				<!-- 这应该是默认的0项 -->
-				<span class="todo-count"><strong>0</strong> item left</span>
+				<span class="todo-count"><strong>{{getActive()}}</strong> item left</span>
 				<!-- 如果不执行路由，就删除它 -->
 				<ul class="filters">
 					<li>
-						<a class="selected" href="#/">All</a>
+						<a class="selected" href="#/" ng-click="all()">All</a>
 					</li>
 					<li>
-						<a href="#/active">Active</a>
+						<a href="#/active" ng-click="active()">Active</a>
 					</li>
 					<li>
-						<a href="#/completed">Completed</a>
+						<a href="#/completed" ng-click="completed()">Completed</a>
 					</li>
 				</ul>
 				<!-- 如果没有完成的项，则隐藏 ↓ -->
-				<button class="clear-completed">Clear completed</button>
+				<button class="clear-completed" ng-click="clearAll()">Clear completed</button>
 			</footer>
 		</section>
 		<footer class="info">
