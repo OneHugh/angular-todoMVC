@@ -86,6 +86,7 @@
 			}
 		}
 		// 9.点击  下中 all  显示所有;active 显示未完成任务 ;completed 显示已完成任务
+		$scope.state = {};
 		$scope.all = function() {
 			$scope.state = {};
 		}

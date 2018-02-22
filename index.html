@@ -44,13 +44,13 @@
 				<!-- 如果不执行路由，就删除它 -->
 				<ul class="filters">
 					<li>
-						<a class="selected" href="#/" ng-click="all()">All</a>
+						<a ng-class="{selected:state.completed==undefined}" href="#/" ng-click="all()">All</a>
 					</li>
 					<li>
-						<a href="#/active" ng-click="active()">Active</a>
+						<a ng-class="{selected:state.completed==false}" href="#/active" ng-click="active()">Active</a>
 					</li>
 					<li>
-						<a href="#/completed" ng-click="completed()">Completed</a>
+						<a  ng-class="{selected:state.completed==true}" href="#/completed" ng-click="completed()">Completed</a>
 					</li>
 				</ul>
 				<!-- 如果没有完成的项，则隐藏 ↓ -->
